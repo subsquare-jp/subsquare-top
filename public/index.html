@@ -1,67 +1,352 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SubSquare - Coming Soon</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>SubSquare - 創造の「前段」を、もっと自由に。</title>
+  
+  <!-- SEO & Meta Tags -->
+  <meta name="description" content="SubSquareは、既存のSNSを置き換えるのではなく、個人クリエイターの発見・回遊・送客を強化する「周辺導線」を構築するプラットフォームです。">
+  <meta property="og:title" content="SubSquare - 創造の「前段」を、もっと自由に。">
+  <meta property="og:description" content="SubSquareは、個人クリエイターの発見・回遊・送客を強化する「周辺導線」を構築するプラットフォームです。">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              darkBgStart: '#0a0f1e',
+              darkBgEnd: '#020617',
+              primary: '#38bdf8',
+              secondary: '#818cf8',
+              accent: '#f43f5e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Premium Effects & Animations -->
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
+    /* Custom background floating glowing orbs */
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
     }
-    .container {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 3rem 4rem;
-      border-radius: 16px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      animation: fadeIn 1s ease-out;
+    .orb-1 {
+      background: radial-gradient(circle, #38bdf8 0%, #818cf8 100%);
+      width: 400px;
+      height: 400px;
+      top: 10%;
+      left: -100px;
+      animation: float-slow 15s infinite alternate ease-in-out;
     }
-    h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(to right, #38bdf8, #818cf8);
+    .orb-2 {
+      background: radial-gradient(circle, #ec4899 0%, #818cf8 100%);
+      width: 500px;
+      height: 500px;
+      bottom: 20%;
+      right: -150px;
+      animation: float-slow 20s infinite alternate-reverse ease-in-out;
+    }
+    .orb-3 {
+      background: radial-gradient(circle, #10b981 0%, #3b82f6 100%);
+      width: 300px;
+      height: 300px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.08;
+      animation: float-slow 25s infinite alternate ease-in-out;
+    }
+
+    @keyframes float-slow {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(30px) scale(1.1); }
+      100% { transform: translateY(-30px) scale(0.95); }
+    }
+
+    /* Glassmorphism custom styles */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-panel:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 40px 0 rgba(56, 189, 248, 0.15);
+      transform: translateY(-4px);
+    }
+
+    /* Text gradient helper */
+    .text-gradient {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    p {
-      font-size: 1.25rem;
-      color: #94a3b8;
-      margin-bottom: 2rem;
-    }
-    .badge {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background: rgba(56, 189, 248, 0.1);
-      color: #38bdf8;
-      border-radius: 9999px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
-<body>
-  <div class="container">
-    <div class="badge">MVP Project</div>
-    <h1>SubSquare</h1>
-    <p>Hello World! The project is successfully initialized.</p>
-  </div>
+<body class="bg-[#020617] text-slate-100 font-sans min-height-screen relative overflow-x-hidden selection:bg-indigo-500/30 selection:text-white">
+
+  <!-- BACKGROUND GLOW ORBS -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="relative z-10 w-full max-w-7xl mx-auto px-6 py-8 flex items-center justify-between">
+    <div class="flex items-center space-x-2">
+      <span class="text-2xl font-black tracking-wider text-gradient">SubSquare</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <span class="px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase border border-white/10 bg-white/5 text-slate-300">
+        Vision Paper v1.0
+      </span>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-5xl mx-auto px-6 pb-24 space-y-24 md:space-y-36">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="text-center pt-8 md:pt-16 pb-12 flex flex-col items-center justify-center min-h-[60vh] md:min-h-[70vh]">
+      <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-sky-500/20 bg-sky-500/5 text-sky-400 text-sm font-semibold mb-6 animate-pulse">
+        <span>AI-Native Creator Platform</span>
+      </div>
+      
+      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+        <span class="text-gradient block mb-2">SubSquare</span>
+        <span class="text-2xl md:text-4xl font-bold text-slate-200 block mt-4 tracking-wide">
+          「創造の『前段』を、もっと自由に。」
+        </span>
+      </h1>
+      
+      <p class="max-w-2xl text-lg md:text-xl text-slate-400 font-light leading-relaxed mb-12">
+        SubSquareは、既存のSNSを置き換えるのではなく、個人クリエイターの発見・回遊・送客を強化する<span class="text-sky-300 font-normal">「周辺導線」</span>を構築するプラットフォームです。
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#philosophy" class="px-8 py-3.5 rounded-xl font-semibold bg-gradient-to-r from-sky-500 to-indigo-500 hover:from-sky-400 hover:to-indigo-400 text-white shadow-lg shadow-sky-500/25 transition duration-300 transform hover:-translate-y-0.5">
+          ビジョンを読む
+        </a>
+        <a href="#roadmap" class="px-8 py-3.5 rounded-xl font-semibold border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 text-slate-200 transition duration-300">
+          ロードマップを見る
+        </a>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY SECTION -->
+    <section id="philosophy" class="scroll-mt-24 space-y-12">
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-indigo-400">Concept & Philosophy</h2>
+        <h3 class="text-3xl md:text-4xl font-extrabold text-slate-100">
+          「SNSのその先ではなく、その手前に。」
+        </h3>
+        <p class="text-slate-400 font-light">
+          情報が過密化し、アルゴリズムに支配される現代のSNS環境。SubSquareはクリエイターが自律して永続できるエコシステムを提供します。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        
+        <!-- Philosophy Item 1 -->
+        <div class="glass-panel p-8 rounded-2xl flex space-x-4 items-start">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
+          </div>
+          <div class="space-y-2">
+            <h4 class="text-lg font-bold text-slate-200">広告をコンテンツとして楽しむ場所</h4>
+            <p class="text-slate-400 text-sm leading-relaxed font-light">
+              ただ遮るだけのノイズとしての広告を排除し、作品としての美しさ・発見の価値を持った広告体験をデザインします。
+            </p>
+          </div>
+        </div>
+
+        <!-- Philosophy Item 2 -->
+        <div class="glass-panel p-8 rounded-2xl flex space-x-4 items-start">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-rose-500/10 flex items-center justify-center text-rose-400">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <div class="space-y-2">
+            <h4 class="text-lg font-bold text-slate-200">配信の熱狂を、その瞬間だけ分かち合う空間</h4>
+            <p class="text-slate-400 text-sm leading-relaxed font-light">
+              アーカイブに残らない、その場だけの特別なつながり。本当に熱量の高いコアファンとだけ共有できる極上の密室空間です。
+            </p>
+          </div>
+        </div>
+
+        <!-- Philosophy Item 3 -->
+        <div class="glass-panel p-8 rounded-2xl flex space-x-4 items-start">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+          </div>
+          <div class="space-y-2">
+            <h4 class="text-lg font-bold text-slate-200">複雑化した活動を、シンプルに繋ぐ導線</h4>
+            <p class="text-slate-400 text-sm leading-relaxed font-light">
+              各配信、物販、ファンクラブ、SNSなど、散らばる活動の接点を一本の美しいシームレスなルートへと昇華させます。
+            </p>
+          </div>
+        </div>
+
+        <!-- Philosophy Item 4 -->
+        <div class="glass-panel p-8 rounded-2xl flex space-x-4 items-start">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+          </div>
+          <div class="space-y-2">
+            <h4 class="text-lg font-bold text-slate-200">AIと共に、少人数で永続できる運営</h4>
+            <p class="text-slate-400 text-sm leading-relaxed font-light">
+              AIが裏方の運営業務をインテリジェントにサポート。創作以外の管理工数を極限まで減らし、持続可能な活動を実現します。
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ROADMAP / PHASES SECTION -->
+    <section id="roadmap" class="scroll-mt-24 space-y-12">
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-sky-400">Roadmap & Services</h2>
+        <h3 class="text-3xl md:text-4xl font-extrabold text-slate-100">
+          展開予定のサービスと展開フェーズ
+        </h3>
+        <p class="text-slate-400 font-light">
+          クリエイターの周辺環境を再設計する、4つのメインプロダクト展開ロードマップ。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Phase 1: Hiromeru -->
+        <div class="glass-panel p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between group">
+          <div class="absolute -right-16 -top-16 w-36 h-36 bg-sky-500/10 rounded-full blur-2xl group-hover:bg-sky-500/20 transition duration-500"></div>
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                Phase 1
+              </span>
+              <span class="text-sm font-semibold text-slate-500">SERVICE 01</span>
+            </div>
+            <h4 class="text-2xl font-bold text-slate-100 mb-2">ヒロメル <span class="text-slate-400 font-light text-base">(Hiromeru)</span></h4>
+            <p class="text-sky-400 font-semibold text-sm mb-4">「広告を、愛されるコンテンツへ。」</p>
+            <p class="text-slate-400 text-sm leading-relaxed font-light mb-8">
+              クリエイターのFANBOXやBOOTH、各種リンクへの入口を、Pinterest型の直感的なグリッド回遊体験で演出。訪れたファンに「偶然の出会い」と「発見の喜び」を最大化させます。
+            </p>
+          </div>
+          <div class="border-t border-white/5 pt-4 text-xs text-slate-500 flex items-center justify-between">
+            <span>展開フェーズ: プレローンチ期</span>
+            <span class="text-sky-400/80 group-hover:translate-x-1 transition duration-300">View Vision &rarr;</span>
+          </div>
+        </div>
+
+        <!-- Phase 2: Square -->
+        <div class="glass-panel p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between group">
+          <div class="absolute -right-16 -top-16 w-36 h-36 bg-rose-500/10 rounded-full blur-2xl group-hover:bg-rose-500/20 transition duration-500"></div>
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                Phase 2
+              </span>
+              <span class="text-sm font-semibold text-slate-500">SERVICE 02</span>
+            </div>
+            <h4 class="text-2xl font-bold text-slate-100 mb-2">Square</h4>
+            <p class="text-rose-400 font-semibold text-sm mb-4">「その瞬間だけ、分かち合う熱狂。」</p>
+            <p class="text-slate-400 text-sm leading-relaxed font-light mb-8">
+              12時間で痕跡を残さず完全に消滅する、1コイン（100円）参加型のクローズドなリアルタイム雑談空間。SNSのオープンすぎる批判を遮断し、ファンと配信者だけの温かい語り場を実現します。
+            </p>
+          </div>
+          <div class="border-t border-white/5 pt-4 text-xs text-slate-500 flex items-center justify-between">
+            <span>展開フェーズ: 第2フェーズ予定</span>
+            <span class="text-rose-400/80 group-hover:translate-x-1 transition duration-300">View Vision &rarr;</span>
+          </div>
+        </div>
+
+        <!-- Phase 3: Mitsukaru -->
+        <div class="glass-panel p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between group">
+          <div class="absolute -right-16 -top-16 w-36 h-36 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition duration-500"></div>
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                Phase 3
+              </span>
+              <span class="text-sm font-semibold text-slate-500">SERVICE 03</span>
+            </div>
+            <h4 class="text-2xl font-bold text-slate-100 mb-2">ミツカル <span class="text-slate-400 font-light text-base">(Mitsukaru)</span></h4>
+            <p class="text-indigo-400 font-semibold text-sm mb-4">「まだ見ぬ才能を、横断的に探す。」</p>
+            <p class="text-slate-400 text-sm leading-relaxed font-light mb-8">
+              YouTube、X、Twitch、各所に点在するクリエイター活動情報を網羅的にインデキシング。ジャンルや配信スタイルといった多次元データから、リスナーに最高の出会いを提供する特化型検索エンジン。
+            </p>
+          </div>
+          <div class="border-t border-white/5 pt-4 text-xs text-slate-500 flex items-center justify-between">
+            <span>展開フェーズ: 中期予定</span>
+            <span class="text-indigo-400/80 group-hover:translate-x-1 transition duration-300">View Vision &rarr;</span>
+          </div>
+        </div>
+
+        <!-- Phase 4: Linkle -->
+        <div class="glass-panel p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between group">
+          <div class="absolute -right-16 -top-16 w-36 h-36 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition duration-500"></div>
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                Phase 4
+              </span>
+              <span class="text-sm font-semibold text-slate-500">SERVICE 04</span>
+            </div>
+            <h4 class="text-2xl font-bold text-slate-100 mb-2">リンクル <span class="text-slate-400 font-light text-base">(Linkle)</span></h4>
+            <p class="text-emerald-400 font-semibold text-sm mb-4">「あらゆる活動を、一筋の導線に。」</p>
+            <p class="text-slate-400 text-sm leading-relaxed font-light mb-8">
+              クリエイターに必要な情報集約（Link-in-Bio）に、データ分析とUI最適化を極限まで融合させた特化型サービス。ただのリンク集ではなく、ファンとの「最初の接点」を洗練させます。
+            </p>
+          </div>
+          <div class="border-t border-white/5 pt-4 text-xs text-slate-500 flex items-center justify-between">
+            <span>展開フェーズ: プラットフォーム統合期</span>
+            <span class="text-emerald-400/80 group-hover:translate-x-1 transition duration-300">View Vision &rarr;</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INQUIRY & FOOTER SECTION -->
+    <section id="footer" class="border-t border-white/10 pt-16 pb-8 space-y-12">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <div class="space-y-2">
+          <h4 class="text-xl font-bold tracking-wider text-gradient">SubSquare</h4>
+          <p class="text-xs text-slate-500 font-light">SubSquare - AI時代の個人クリエイター運営基盤</p>
+        </div>
+        <div class="flex items-center space-x-6 text-slate-500 text-sm">
+          <span class="hover:text-slate-300 cursor-pointer transition">Coming Soon</span>
+          <span class="hover:text-slate-300 cursor-pointer transition">About</span>
+          <span class="hover:text-slate-300 cursor-pointer transition">Privacy Policy</span>
+        </div>
+      </div>
+      <div class="text-center text-xs text-slate-600">
+        &copy; 2026 SubSquare Project.
+      </div>
+    </section>
+
+  </main>
 </body>
 </html>
