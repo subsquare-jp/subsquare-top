@@ -1,0 +1,22 @@
+{
+  "short_name": "SubSquare",
+  "name": "SubSquare",
+  "description": "SubSquareは、個人クリエイターの発見・回遊・送客を強化する「周辺導線」を構築するプラットフォームです。",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SubSquare - 創造の「前段」を、もっと自由に。</title>
   
+  <!-- PWA Settings -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#020617">
+  <link rel="apple-touch-icon" href="/icon.png">
+  
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((reg) => {
+            console.log('ServiceWorker registration successful with scope: ', reg.scope);
+          })
+          .catch((err) => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+  </script>
+
   <!-- SEO & Meta Tags -->
   <meta name="description" content="SubSquareは、既存のSNSを置き換えるのではなく、個人クリエイターの発見・回遊・送客を強化する「周辺導線」を構築するプラットフォームです。">
   <meta property="og:title" content="SubSquare - 創造の「前段」を、もっと自由に。">
